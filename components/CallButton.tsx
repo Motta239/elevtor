@@ -39,7 +39,7 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
   };
 
   const isInElevators = orderdElevators.includes(index);
-  console.log(isInElevators);
+
   useEffect(() => {
     if (isInElevators) {
       setButtonState(buttonStyles[1]);

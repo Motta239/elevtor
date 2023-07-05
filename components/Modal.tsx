@@ -29,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({
   if (!isOpen) {
     return null;
   }
-  console.log(elevatorsNumber);
+
   return (
     <div className="fixed inset-0 backdrop-blur-2xl flex items-center justify-center z-50">
       <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
