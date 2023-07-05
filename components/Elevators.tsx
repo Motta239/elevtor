@@ -4,18 +4,12 @@ import { MdElevator } from "react-icons/md";
 interface ElevatorProps {
   index: number;
   currentFloor: number;
-  elevatorIsActive: boolean;
   color: string;
-  queue: [];
+
   targetFloor: number;
 }
 
-function Elevators({
-  currentFloor,
-  color,
-  targetFloor,
-  elevatorIsActive,
-}: ElevatorProps) {
+function Elevators({ currentFloor, color, targetFloor }: ElevatorProps) {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {

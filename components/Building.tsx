@@ -26,8 +26,6 @@ export function Building({ floorsNum, elevators }: BuildingProps) {
   ); //array of the available elevators
   //finds the closest non active elevator for the requested floor
 
-  console.log(elevators, queue);
-
   const handleFindClosestNotActiveElevator = (
     closestElevator: number,
     closestFloor: number,
@@ -51,9 +49,7 @@ export function Building({ floorsNum, elevators }: BuildingProps) {
         setElevatorColor(closestElevator, "green");
         setTimeout(() => {
           setElevatorColor(closestElevator, "black");
-          setTimeout(() => {
-            setElevatorIsActive(closestElevator, false);
-          }, waitTimer);
+          setElevatorIsActive(closestElevator, false);
         }, waitTimer);
         new Audio("/elevatorSound.mp3").play();
         return;
@@ -90,19 +86,15 @@ export function Building({ floorsNum, elevators }: BuildingProps) {
         </div>
       ))}
       <div className="absolute bottom-0 left-20 right-20 flex">
-        {elevators.map(
-          ({ currentFloor, elevatorIsActive, color, targetFloor }, index) => (
-            <Elevators
-              key={index}
-              index={index}
-              currentFloor={currentFloor}
-              elevatorIsActive={elevatorIsActive}
-              color={color}
-              queue={queue}
-              targetFloor={targetFloor}
-            />
-          )
-        )}
+        {elevators.map(({ currentFloor, color, targetFloor }, index) => (
+          <Elevators
+            key={index}
+            index={index}
+            currentFloor={currentFloor}
+            color={color}
+            targetFloor={targetFloor}
+          />
+        ))}
       </div>
     </div>
   );
