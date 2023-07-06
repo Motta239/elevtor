@@ -96,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({
               </button>
             </div>
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label htmlFor="elevators" className="block font-medium mb-1">
               Elevator Speed :
             </label>
@@ -108,8 +108,8 @@ const Modal: React.FC<ModalProps> = ({
               >
                 -
               </button>
-              <div className="w-full px-3 py-2 border-t border-b border-gray-300 text-center">
-                {elevatorSpeed}
+              <div className="w-full flex items-center justify-center  px-3 py-2 border-t border-b border-gray-300 text-center">
+                <p>{parseInt(elevatorSpeed.toString()[0])}</p>
               </div>
 
               <button
@@ -119,6 +119,7 @@ const Modal: React.FC<ModalProps> = ({
               >
                 +
               </button>
+              <p className="text-xs absolute  bottom-[-20px]  ">In Secondes</p>
             </div>
           </div>
           <div className="flex justify-end">

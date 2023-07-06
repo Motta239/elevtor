@@ -98,8 +98,15 @@ const useStore = create((set) => {
           0,
           state.floorsNum.length - 1
         );
+        const elevatorsNum = state.elevatorsNum.map((elevator) => {
+          if (elevator.currentFloor >= updatedFloors.length) {
+            return { ...elevator, currentFloor: updatedFloors.length - 1 };
+          }
+          return elevator;
+        });
         return {
           floorsNum: updatedFloors,
+          elevatorsNum,
         };
       }), // decreaseFloors: Removes the last floor from the floorsNum array.
 
@@ -118,7 +125,7 @@ const useStore = create((set) => {
     increaseElevatorSpeed: () => {
       set((state) => {
         const { elevatorSpeed, speedLimits } = state;
-        const increasedSpeed = elevatorSpeed + 500;
+        const increasedSpeed = elevatorSpeed + 1000;
 
         if (increasedSpeed > speedLimits[1]) {
           // Reached the maximum allowed elevator speed
@@ -136,7 +143,7 @@ const useStore = create((set) => {
     decreaseElevatorSpeed: () => {
       set((state) => {
         const { elevatorSpeed, speedLimits } = state;
-        const decreasedSpeed = elevatorSpeed - 500;
+        const decreasedSpeed = elevatorSpeed - 1000;
 
         if (decreasedSpeed < speedLimits[0]) {
           // Reached the minimum allowed elevator speed

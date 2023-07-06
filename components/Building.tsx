@@ -12,8 +12,11 @@ export function Building({ floorsNum, elevators }: BuildingProps) {
       {floorsNum.map((floorNumber, index) => (
         <div key={floorNumber} className=" flex bg-white">
           <FloorNumber index={index} />
-          {elevators.map(() => (
-            <div className="  w-14 md:w-20 h-10   border-r-[1px] border-b-[1px]" />
+          {elevators.map((e, index) => (
+            <div
+              key={index}
+              className="  w-14 md:w-20 h-10   border-r-[1px] border-b-[1px]"
+            />
           ))}
           <CallButton index={index} />
         </div>
