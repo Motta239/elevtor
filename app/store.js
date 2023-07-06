@@ -39,7 +39,8 @@ const useStore = create((set) => {
     ], // elevatorsNum: An array of elevator objects, each containing properties such as currentFloor, elevatorIsActive, color, and targetFloor.
     floorsNum: floorsNum, // floorsNum: An array representing the floors in the building.
     queue: [], // queue: An array representing the queue of requested floors.
-
+    elevatorSpeed: 2000,
+    speedLimits: [1000, 4000],
     // Functions:
     addToQueue: (requestedFloor) => {
       set((state) => {
@@ -114,6 +115,41 @@ const useStore = create((set) => {
         return { elevatorsNum: updatedElevators };
       }),
     // setElevatorStatusAndTarget: Updates the status and target floor of a specific elevator.
+    increaseElevatorSpeed: () => {
+      set((state) => {
+        const { elevatorSpeed, speedLimits } = state;
+        const increasedSpeed = elevatorSpeed + 500;
+
+        if (increasedSpeed > speedLimits[1]) {
+          // Reached the maximum allowed elevator speed
+          return {
+            elevatorSpeed: speedLimits[1],
+          };
+        }
+
+        return {
+          elevatorSpeed: increasedSpeed,
+        };
+      });
+    },
+
+    decreaseElevatorSpeed: () => {
+      set((state) => {
+        const { elevatorSpeed, speedLimits } = state;
+        const decreasedSpeed = elevatorSpeed - 500;
+
+        if (decreasedSpeed < speedLimits[0]) {
+          // Reached the minimum allowed elevator speed
+          return {
+            elevatorSpeed: speedLimits[0],
+          };
+        }
+
+        return {
+          elevatorSpeed: decreasedSpeed,
+        };
+      });
+    },
   };
 });
 

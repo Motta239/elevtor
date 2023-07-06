@@ -20,8 +20,6 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
       style: "bg-white border-2 border-green-800",
     },
   ];
-  const [buttonState, setButtonState] = useState(buttonStyles[0]);
-
   const {
     removeFromQueue,
     updateFloor,
@@ -29,8 +27,9 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
     queue,
     addToQueue,
     elevatorsNum,
+    elevatorSpeed,
   } = useStore();
-
+  const [buttonState, setButtonState] = useState(buttonStyles[0]);
   const availableElevatorsArray = elevatorsNum.map(
     (elevator: { elevatorIsActive: boolean; currentFloor: number }) =>
       elevator.elevatorIsActive ? NaN : elevator.currentFloor
@@ -73,7 +72,6 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
     const difference = target - closestFloor;
     const direction = difference > 0 ? 1 : -1; // Determine the direction of floor updates
     const updateCount = Math.abs(difference); // Use the absolute difference
-    const elevatorSpeed = 500;
     const waitTimer = 2000;
     let currentUpdateCount = 0;
     const updateFloorInterval = setInterval(() => {

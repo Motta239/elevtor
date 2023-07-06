@@ -15,8 +15,15 @@ const Modal: React.FC<ModalProps> = ({
   floorsNumber,
   elevatorsNumber,
 }) => {
-  const { increaseElevator, decreaseElevator, increaseFloors, decreaseFloors } =
-    useStore();
+  const {
+    increaseElevator,
+    decreaseElevator,
+    increaseFloors,
+    decreaseFloors,
+    increaseElevatorSpeed,
+    decreaseElevatorSpeed,
+    elevatorSpeed,
+  } = useStore();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,6 +91,31 @@ const Modal: React.FC<ModalProps> = ({
                 type="button"
                 className="px-3 py-2 rounded-r-lg border border-gray-300"
                 onClick={() => increaseElevator()}
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="elevators" className="block font-medium mb-1">
+              Elevator Speed :
+            </label>
+            <div className="flex items-center">
+              <button
+                type="button"
+                className="px-3 py-2 rounded-l-lg border border-gray-300"
+                onClick={() => decreaseElevatorSpeed()}
+              >
+                -
+              </button>
+              <div className="w-full px-3 py-2 border-t border-b border-gray-300 text-center">
+                {elevatorSpeed}
+              </div>
+
+              <button
+                type="button"
+                className="px-3 py-2 rounded-r-lg border border-gray-300"
+                onClick={() => increaseElevatorSpeed()}
               >
                 +
               </button>

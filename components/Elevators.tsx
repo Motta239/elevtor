@@ -1,3 +1,4 @@
+import useStore from "@/app/store";
 import React, { useEffect, useState } from "react";
 import { MdElevator } from "react-icons/md";
 
@@ -9,8 +10,8 @@ interface ElevatorProps {
 }
 
 function Elevators({ currentFloor, color, targetFloor }: ElevatorProps) {
+  const { elevatorSpeed } = useStore();
   const [timer, setTimer] = useState(0);
-
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -32,7 +33,7 @@ function Elevators({ currentFloor, color, targetFloor }: ElevatorProps) {
         className=" w-14 md:w-20  h-10 flex justify-center items-center"
         style={{
           transform: `translateY(-${Math.abs(currentFloor * 40)}px)`,
-          transition: "transform 1s linear",
+          transition: `transform ${elevatorSpeed / 1000}s linear`,
         }}
       >
         <MdElevator color={color} className="w-8  h-8" />

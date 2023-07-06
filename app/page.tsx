@@ -7,7 +7,7 @@ import { useState } from "react";
 import Modal from "@/components/Modal";
 
 export default function Home() {
-  const { elevatorsNum, floorsNum } = useStore();
+  const { elevatorsNum, floorsNum, elevatorSpeed } = useStore();
 
   const [isModalOpen, setIsModalOpen] = useState(true);
   const openModal = () => {
