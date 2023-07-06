@@ -37,7 +37,7 @@ function Elevators({ currentFloor, color, targetFloor }: ElevatorProps) {
       >
         <MdElevator color={color} className="w-8  h-8" />
       </div>
-      {color == "red" && (
+      {color == "red" && currentFloor !== targetFloor && (
         <div
           style={{ transform: `translateY(-${targetFloor * 40}px)` }}
           className="text-center bottom-3 left-3 md:left-5  text-[8px] md:text-xs absolute mt-2"

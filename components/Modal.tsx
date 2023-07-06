@@ -15,10 +15,8 @@ const Modal: React.FC<ModalProps> = ({
   floorsNumber,
   elevatorsNumber,
 }) => {
-  const increaseElevator = useStore((state) => state.increaseElevator);
-  const decreaseElevator = useStore((state) => state.decreaseElevator);
-  const increaseFloors = useStore((state) => state.increaseFloors);
-  const decreaseFloors = useStore((state) => state.decreaseFloors);
+  const { increaseElevator, decreaseElevator, increaseFloors, decreaseFloors } =
+    useStore();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

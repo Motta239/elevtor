@@ -30,6 +30,7 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
     addToQueue,
     elevatorsNum,
   } = useStore();
+
   const availableElevatorsArray = elevatorsNum.map(
     (elevator: { elevatorIsActive: boolean; currentFloor: number }) =>
       elevator.elevatorIsActive ? NaN : elevator.currentFloor
