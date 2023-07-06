@@ -39,22 +39,31 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
       .map((e: { targetFloor: any | number }) => e.targetFloor)
       .filter(Boolean)
   );
+
   const orderdElevators = [...queue, ...elevators];
   const isInElevators = orderdElevators.includes(index);
 
+  // Check if the requested floor is in the elevators
+  useEffect(() => {
+    // This effect will be triggered whenever `isInElevators` changes
+
+    // Check if the requested floor is in the elevators
+    if (isInElevators) {
+      setButtonState(buttonStyles[1]); // Set button style to "Waiting"
+
+      // Set a timer to change the button style to `buttonStyles[2]` after 2 seconds
+    } else {
+      setButtonState(buttonStyles[2]); // Set button style to default
+      const timer = setTimeout(() => {
+        setButtonState(buttonStyles[0]); // Set button style to the desired state after 2 seconds
+      }, 2000);
+
+      // Clear the timer if the component unmounts or `isInElevators` changes
+      return () => clearTimeout(timer);
+    }
+  }, [isInElevators]);
   const handleButtonClick = (requestedFloor: number) => {
     addToQueue(requestedFloor); // Add the pressed floor index to the queue in the zustand store
-    while (isInElevators) {
-      setButtonState(buttonStyles[1]); // Set button style to "Waiting"
-    }
-
-    if (!isInElevators) {
-      setButtonState(buttonStyles[2]); // Set button style to "Arrived" immediately
-      const timeoutId = setTimeout(() => {
-        setButtonState(buttonStyles[0]); // Switch back to "Call" after 2 seconds
-      }, 2000);
-      return () => clearTimeout(timeoutId); // Cleanup the timeout on unmount
-    }
   };
 
   //array of the available elevators
@@ -108,7 +117,6 @@ const CallButton: React.FC<CallButtonProps> = ({ index }) => {
         onClick={() => handleButtonClick(index)}
         className={`h-8 w-16 text-xs hover:scale-95 rounded-md
         ${buttonState.style}`}
-        disabled={isInElevators}
         key={index}
       >
         {buttonState.text}
