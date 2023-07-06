@@ -18,7 +18,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col space-y-10 justify-center min-h-screen p-4 bg-gray-200 items-center">
+    <div className="flex  overflow-auto  flex-col space-y-10 justify-center min-h-screen p-4 bg-gray-200 items-center">
       <Building elevators={elevatorsNum} floorsNum={floorsNum} />
       <div>
         <button

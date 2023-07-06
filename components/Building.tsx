@@ -15,7 +15,9 @@ export function Building({ floorsNum, elevators }: BuildingProps) {
           {elevators.map((e, index) => (
             <div
               key={index}
-              className="  w-14 md:w-20 h-10   border-r-[1px] border-b-[1px]"
+              className={` w-8  ${
+                elevators.length <= 10 ? "md:w-20  " : ""
+              }  h-10 border-r-[1px] border-b-[1px]`}
             />
           ))}
           <CallButton index={index} />
