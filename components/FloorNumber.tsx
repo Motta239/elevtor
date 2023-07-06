@@ -1,8 +1,8 @@
-interface FloorBoxProps {
+interface FloorNumberProps {
   index: number;
 }
 
-const FloorBox: React.FC<FloorBoxProps> = ({ index }) => {
+const FloorNumber: React.FC<FloorNumberProps> = ({ index }) => {
   const getFloorNumber = (index: number) => {
     if (index === 0) {
       return "Ground Floor";
@@ -28,4 +28,4 @@ const FloorBox: React.FC<FloorBoxProps> = ({ index }) => {
   );
 };
 
-export default FloorBox;
+export default FloorNumber;

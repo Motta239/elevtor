@@ -5,7 +5,6 @@ interface ElevatorProps {
   index: number;
   currentFloor: number;
   color: string;
-
   targetFloor: number;
 }
 
@@ -17,8 +16,8 @@ function Elevators({ currentFloor, color, targetFloor }: ElevatorProps) {
 
     if (targetFloor) {
       interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer + 0.1);
-      }, 100);
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 1000);
     }
 
     return () => {
@@ -43,7 +42,7 @@ function Elevators({ currentFloor, color, targetFloor }: ElevatorProps) {
           style={{ transform: `translateY(-${targetFloor * 40}px)` }}
           className="text-center bottom-3 left-3 md:left-5  text-[8px] md:text-xs absolute mt-2"
         >
-          {timer.toFixed(2)} Sec
+          {timer} Sec
         </div>
       )}
     </div>

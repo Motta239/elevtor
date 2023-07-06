@@ -7,9 +7,7 @@ import { useState } from "react";
 import Modal from "@/components/Modal";
 
 export default function Home() {
-  const elevators = useStore((state) => state.elevatorsNum);
-  const floorsNum = useStore((state) => state.floorsNum);
-  const queue = useStore((state) => state.queue);
+  const { elevatorsNum, floorsNum } = useStore();
 
   const [isModalOpen, setIsModalOpen] = useState(true);
   const openModal = () => {
@@ -21,7 +19,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col space-y-10 justify-center min-h-screen p-4 bg-gray-200 items-center">
-      <Building elevators={elevators} floorsNum={floorsNum} queue={queue} />
+      <Building elevators={elevatorsNum} floorsNum={floorsNum} />
       <div>
         <button
           onClick={openModal}
@@ -33,7 +31,7 @@ export default function Home() {
           isOpen={isModalOpen}
           closeModal={closeModal}
           floorsNumber={floorsNum.length}
-          elevatorsNumber={elevators.length}
+          elevatorsNumber={elevatorsNum.length}
         />
       </div>
     </div>

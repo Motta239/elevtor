@@ -4,6 +4,7 @@ const useStore = create((set) => {
   const floorsNum = Array.from({ length: 10 }, (_, index) => index);
 
   return {
+    // State variables:
     elevatorsNum: [
       {
         currentFloor: 0,
@@ -35,10 +36,11 @@ const useStore = create((set) => {
         color: "",
         targetFloor: false,
       },
-    ],
-    floorsNum: floorsNum,
-    queue: [],
+    ], // elevatorsNum: An array of elevator objects, each containing properties such as currentFloor, elevatorIsActive, color, and targetFloor.
+    floorsNum: floorsNum, // floorsNum: An array representing the floors in the building.
+    queue: [], // queue: An array representing the queue of requested floors.
 
+    // Functions:
     addToQueue: (requestedFloor) => {
       set((state) => {
         if (!state.queue.includes(requestedFloor)) {
@@ -48,39 +50,20 @@ const useStore = create((set) => {
         }
         return state;
       });
-    },
+    }, // addToQueue: Adds a requested floor to the queue if it doesn't already exist.
 
     removeFromQueue: () => {
       set((state) => ({
         queue: state.queue.slice(1),
       }));
-    },
+    }, // removeFromQueue: Removes the first element from the queue.
 
     updateFloor: (i, index) =>
       set((state) => {
         const updatedElevators = [...state.elevatorsNum];
         updatedElevators[i] = { ...updatedElevators[i], currentFloor: index };
         return { elevatorsNum: updatedElevators };
-      }),
-
-    setElevatorIsActive: (index, isActive) =>
-      set((state) => {
-        const updatedElevators = [...state.elevatorsNum];
-        updatedElevators[index] = {
-          ...updatedElevators[index],
-          elevatorIsActive: isActive,
-        };
-        return { elevatorsNum: updatedElevators };
-      }),
-    setElevatorColor: (index, color) =>
-      set((state) => {
-        const updatedElevators = [...state.elevatorsNum];
-        updatedElevators[index] = {
-          ...updatedElevators[index],
-          color: color,
-        };
-        return { elevatorsNum: updatedElevators };
-      }),
+      }), // updateFloor: Updates the current floor of a specific elevator.
 
     increaseElevator: () =>
       set((state) => ({
@@ -89,6 +72,7 @@ const useStore = create((set) => {
           { currentFloor: 0, elevatorIsActive: false },
         ],
       })),
+    // increaseElevator: Adds a new elevator to the elevatorsNum array.
 
     decreaseElevator: () =>
       set((state) => ({
@@ -96,7 +80,7 @@ const useStore = create((set) => {
           0,
           state.elevatorsNum.length - 1
         ),
-      })),
+      })), // decreaseElevator: Removes the last elevator from the elevatorsNum array.
 
     increaseFloors: () =>
       set((state) => {
@@ -105,7 +89,7 @@ const useStore = create((set) => {
         return {
           floorsNum: updatedFloors,
         };
-      }),
+      }), // increaseFloors: Adds a new floor to the floorsNum array.
 
     decreaseFloors: () =>
       set((state) => {
@@ -116,17 +100,20 @@ const useStore = create((set) => {
         return {
           floorsNum: updatedFloors,
         };
-      }),
+      }), // decreaseFloors: Removes the last floor from the floorsNum array.
 
-    setTargetElevator: (index, target) =>
+    setElevatorStatusAndTarget: (index, color, isActive, target) =>
       set((state) => {
         const updatedElevators = [...state.elevatorsNum];
         updatedElevators[index] = {
           ...updatedElevators[index],
+          color: color,
+          elevatorIsActive: isActive,
           targetFloor: target,
         };
         return { elevatorsNum: updatedElevators };
       }),
+    // setElevatorStatusAndTarget: Updates the status and target floor of a specific elevator.
   };
 });
 
