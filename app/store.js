@@ -39,7 +39,7 @@ const useStore = create((set) => {
     ], // elevatorsNum: An array of elevator objects, each containing properties such as currentFloor, elevatorIsActive, color, and targetFloor.
     floorsNum: floorsNum, // floorsNum: An array representing the floors in the building.
     queue: [], // queue: An array representing the queue of requested floors.
-    elevatorSpeed: 2000,
+    elevatorSpeed: 500,
     speedLimits: [1000, 4000],
     // Functions:
     addToQueue: (requestedFloor) => {
